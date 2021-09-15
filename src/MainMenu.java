@@ -2,34 +2,37 @@ import java.util.Scanner;
 
 public class MainMenu {
 
-    public static void Game(){
+    public void game(){
 
     boolean runGame = true;
         while(runGame) {
             try {
-                    //Huvud Meny.
-                    System.out.println("____________________________________________");
-                    System.out.println("|              STEN SAX PÅSE               |");
-                    System.out.println("|               ✊    ✌   ✋                |");
-                    System.out.println("|__________________________________________|");
-                    System.out.println("|                1.Ny Match                |");
-                    System.out.println("|                2.Historik                |");
-                    System.out.println("|                3.Avsluta                 |");
-                    System.out.println("|__________________________________________|");
-                    System.out.print("Ange val: ");
+                //Huvud Meny.
+                System.out.println("____________________________________________");
+                System.out.println("|              STEN SAX PÅSE               |");
+                System.out.println("|               ✊    ✌   ✋                |");
+                System.out.println("|__________________________________________|");
+                System.out.println("|                1.Ny Match                |");
+                System.out.println("|                2.Historik                |");
+                System.out.println("|                3.Avsluta                 |");
+                System.out.println("|__________________________________________|");
+                System.out.print("Ange val: ");
 
                     //Spelarens input.
                     Scanner scan = new Scanner(System.in);
-                    int val = scan.nextInt();
+                    int input = scan.nextInt();
 
-                switch (val) {
+                    //Objekt för klassen GameCode.
+                    GameCode gamecode = new GameCode();
+
+                switch (input) {
 
                     case 1: //Skriver ut PlayerMenu metoden i GameCode klassen.
-                        GameCode.PlayerMenu();
+                        gamecode.playerMenu();
                         break;
 
                     case 2: //Skriver ut MatchHistory metoden i GameCode klassen.
-                        GameCode.MatchHistory();
+                        gamecode.matchHistory();
                         break;
 
                     case 3: //Avsluta spel.
@@ -40,7 +43,7 @@ public class MainMenu {
 
                     //Error om ett annat siffra ges.
                     default:
-                        System.out.println("ERROR " + val + " finns inte!");
+                        System.out.println("ERROR " + input + " finns inte!");
                         break;
                 }
             }
@@ -54,7 +57,8 @@ public class MainMenu {
     public static void main(String[] args) {
 
         //Skriver ut Game metoden.
-        MainMenu.Game();
+        MainMenu mainmenu = new MainMenu();
+        mainmenu.game();
 
     }
 }
