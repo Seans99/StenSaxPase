@@ -3,26 +3,33 @@ import java.util.Scanner;
 
 public class GameCode {
 
-    public static ArrayList<String> gameList = new ArrayList<>();
+    //Static gör så att den här klassen äger array listan,
+    // och jag kan med static använda array listan i dem andra klasser.
+    static ArrayList<String> matchList = new ArrayList<>();
 
-    public static void MatchHistory(){
+    public void matchHistory(){
 
         System.out.println("_______________");
         System.out.println("Match historik:");
 
         //Skrivs ut om array listan är tom.
-        if(gameList.isEmpty()){
+        if(matchList.isEmpty()){
             System.out.println("Inga matcher spelade ännu!");
         }
 
         //Skriver ut lista med match historik.
-        for (String i : gameList) {
+        for (String i : matchList) {
             System.out.println(i);
         }
         System.out.println("_______________");
     }
 
-    public static void PlayerMenu(){
+    public void playerMenu(){
+
+        //Objekt för alla klasser.
+        GameCode gamecode = new GameCode();
+        MainMenu mainmenu = new MainMenu();
+        AfterMatchMenu menu = new AfterMatchMenu();
 
             try {
                 //Spelarens val meny.
@@ -37,21 +44,21 @@ public class GameCode {
 
                 //Spelarens input.
                 Scanner scan = new Scanner(System.in);
-                int val = scan.nextInt();
+                int input = scan.nextInt();
 
                 //Datorn väljer en random från 1 till 3 (Sten, Sax eller Påse).
                 int random = (int) (Math.random() * 3);
 
                 //Skickar ett String till array listan om man har vunnit, förlorat eller att det blev oavgjort.
-                if (val == 1 && random == 0 || val == 2 && random == 1 || val == 3 && random == 2) {
-                    gameList.add("Oavgjort");
-                } else if (val == 1 && random == 1 || val == 2 && random == 2 || val == 3 && random == 0) {
-                    gameList.add("Vann");
-                } else if (val == 1 && random == 2 || val == 2 && random == 0 || val == 3 && random == 1) {
-                    gameList.add("Förlorade");
+                if (input == 1 && random == 0 || input == 2 && random == 1 || input == 3 && random == 2) {
+                    matchList.add("Oavgjort");
+                } else if (input == 1 && random == 1 || input == 2 && random == 2 || input == 3 && random == 0) {
+                    matchList.add("Vann");
+                } else if (input == 1 && random == 2 || input == 2 && random == 0 || input == 3 && random == 1) {
+                    matchList.add("Förlorade");
                 }
 
-                switch (val) {
+                switch (input) {
 
                         /*Skriver ut om man vunnit, förlorat eller att det blev lika
                         efter man har valt antingen sten, sax eller påse.
@@ -59,88 +66,85 @@ public class GameCode {
                          */
 
                     case 1: //Sten.
-
                         if (random == 0) {
                             System.out.println("__________________");
                             System.out.println("Det blev oavgjort.");
                             System.out.println("✊ >< ✊");
                             System.out.println("__________________");
-                            AfterMatchMenu.afterMatch();
+                            menu.afterMatch();
                         } else if (random == 1) {
                             System.out.println("________________");
                             System.out.println("Grattis du vann!");
                             System.out.println("✊ -> ✌");
                             System.out.println("________________");
-                            AfterMatchMenu.afterMatch();
+                            menu.afterMatch();
                         } else if (random == 2) {
                             System.out.println("_____________");
                             System.out.println("du förlorade!");
                             System.out.println("✋ <- ✊");
                             System.out.println("_____________");
-                            AfterMatchMenu.afterMatch();
+                            menu.afterMatch();
                         }
                         break;
 
                     case 2: //Sax.
-
                         if (random == 1) {
                             System.out.println("__________________");
                             System.out.println("Det blev oavgjort.");
                             System.out.println("✌ >< ✌");
                             System.out.println("__________________");
-                            AfterMatchMenu.afterMatch();
+                            menu.afterMatch();
                         } else if (random == 2) {
                             System.out.println("________________");
                             System.out.println("Grattis du vann!");
                             System.out.println("✌ -> ✋");
                             System.out.println("________________");
-                            AfterMatchMenu.afterMatch();
+                            menu.afterMatch();
                         } else if (random == 0) {
                             System.out.println("_____________");
                             System.out.println("du förlorade!");
                             System.out.println("✌ <- ✊");
                             System.out.println("_____________");
-                            AfterMatchMenu.afterMatch();
+                            menu.afterMatch();
                         }
                         break;
 
                     case 3: //Påse.
-
                         if (random == 2) {
                             System.out.println("__________________");
                             System.out.println("Det blev oavgjort.");
                             System.out.println("✋ >< ✋");
                             System.out.println("__________________");
-                            AfterMatchMenu.afterMatch();
+                            menu.afterMatch();
                         } else if (random == 0) {
                             System.out.println("________________");
                             System.out.println("Grattis du vann!");
                             System.out.println("✋ -> ✊");
                             System.out.println("________________");
-                            AfterMatchMenu.afterMatch();
+                            menu.afterMatch();
                         } else if (random == 1) {
                             System.out.println("_____________");
                             System.out.println("du förlorade!");
                             System.out.println("✋ <- ✌");
                             System.out.println("_____________");
-                            AfterMatchMenu.afterMatch();
+                            menu.afterMatch();
                         }
                         break;
 
                     case 4: //Skriver ut huvud menyn när man väljer 4.
-                        MainMenu.Game();
+                        mainmenu.game();
                         break;
 
                     default: //Error ges om ett annat siffra ges.
-                        System.out.println("ERROR " + val + " finns inte!");
-                        GameCode.PlayerMenu();
+                        System.out.println("ERROR " + input + " finns inte!");
+                        gamecode.playerMenu();
                         break;
                 }
             }
             //Error om något annat än en siffra anges.
             catch (Exception e) {
                 System.out.println("ERROR var snäll och ange rätt värde.");
-                GameCode.PlayerMenu();
+                gamecode.playerMenu();
             }
     }
 }
