@@ -2,7 +2,12 @@ import java.util.Scanner;
 
 public class AfterMatchMenu {
 
-    public static void afterMatch(){
+    public void afterMatch(){
+
+        //Objekt för alla klasser.
+        GameCode gamecode = new GameCode();
+        MainMenu mainmenu = new MainMenu();
+        AfterMatchMenu menu = new AfterMatchMenu();
 
             try {
                 //After match meny.
@@ -16,16 +21,18 @@ public class AfterMatchMenu {
 
                 //Spelarens input
                 Scanner scan = new Scanner(System.in);
-                int val = scan.nextInt();
+                int input = scan.nextInt();
 
-                switch (val) {
+                switch (input) {
 
                     case 1: //Skriver ut PlayerMenu metoden i GameCode klassen.
-                        GameCode.PlayerMenu();
+
+                        gamecode.playerMenu();
                         break;
 
                     case 2: //Skriver ut Game metoden i MainMenu klassen.
-                        MainMenu.Game();
+
+                        mainmenu.game();
                         break;
 
                     case 3: //Stänger av spelet.
@@ -35,15 +42,16 @@ public class AfterMatchMenu {
 
                     //Error ges om ett annat siffra ges.
                     default:
-                        System.out.println("ERROR " + val + " finns inte!");
-                        AfterMatchMenu.afterMatch();
+                        System.out.println("ERROR " + input + " finns inte!");
+
+                        menu.afterMatch();
                         break;
                 }
             }
             //Error om något annat än en siffra anges.
             catch (Exception e) {
                 System.out.println("ERROR var snäll och ange rätt värde.");
-                AfterMatchMenu.afterMatch();
+                menu.afterMatch();
             }
     }
 }
