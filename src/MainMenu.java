@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class MainMenu {
 
-    public void game(){
+    public void game() {
 
     boolean runGame = true;
         while(runGame) {
