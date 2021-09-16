@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class AfterMatchMenu {
 
-    public void afterMatch(){
+    public void afterMatch() {
 
         //Objekt för alla klasser.
         GameCode gamecode = new GameCode();
