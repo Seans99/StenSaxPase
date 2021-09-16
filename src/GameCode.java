@@ -7,13 +7,13 @@ public class GameCode {
     // och jag kan med static använda array listan i dem andra klasser.
     static ArrayList<String> matchList = new ArrayList<>();
 
-    public void matchHistory(){
+    public void matchHistory() {
 
         System.out.println("_______________");
         System.out.println("Match historik:");
 
         //Skrivs ut om array listan är tom.
-        if(matchList.isEmpty()){
+        if(matchList.isEmpty()) {
             System.out.println("Inga matcher spelade ännu!");
         }
 
@@ -24,7 +24,7 @@ public class GameCode {
         System.out.println("_______________");
     }
 
-    public void playerMenu(){
+    public void playerMenu() {
 
         //Objekt för alla klasser.
         GameCode gamecode = new GameCode();
